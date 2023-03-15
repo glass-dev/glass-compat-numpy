@@ -1,14 +1,4 @@
-'''Compatibility layer for Numpy.'''
+'''Array namespace for Numpy.'''
 
-import sys
-
-
-def array_namespace(*objs):
-    if 'numpy' not in sys.modules:
-        raise TypeError
-    import numpy as np
-    for obj in objs:
-        if not isinstance(obj, (np.ndarray, np.generic, np.random.Generator)):
-            raise TypeError
-    from . import array
-    return array
+from array_api_compat.numpy import *  # noqa
+from . import random, healpix  # noqa: F401
